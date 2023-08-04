@@ -1,0 +1,16 @@
+apiVersion: cd.coding.net/v1alpha1
+kind: GitSource
+metadata:
+  name: team-config
+spec:
+  git:
+    url: https://e.coding.net/chuqiyun/qimenidc/client.git
+    cred: git
+    ref:
+      branch: main
+  templateRenderer:
+    engine: Orbit
+    path: /deploy
+    files:
+    - values.yaml
+  interval: 1m
