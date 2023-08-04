@@ -1,0 +1,10 @@
+apiVersion: oam.coding.net/v1alpha1
+kind: CommonAnnotation
+metadata:
+  name: client
+spec:
+  variables:
+  - name: system
+    value:
+      projectId: '12100877'
+      projectName: qimenidc
