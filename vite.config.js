@@ -1,6 +1,5 @@
 import path from 'path';
 import { loadEnv } from 'vite';
-import { viteMockServe } from 'vite-plugin-mock';
 import react from '@vitejs/plugin-react';
 import svgr from '@honkhonk/vite-plugin-svgr';
 
@@ -41,16 +40,12 @@ export default (params) => {
 
     plugins: [
       svgr(),
-      react(),
-      mode === 'mock' &&
-        viteMockServe({
-          mockPath: './mock',
-          localEnabled: true,
-        }),
+      react()
     ],
 
     build: {
       cssCodeSplit: false,
+      chunkSizeWarningLimit: 1500
     },
 
     server: {

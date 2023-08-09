@@ -9,7 +9,7 @@ const dashboard: IRouter[] = [
     meta: {
       title: '统计报表',
       Icon: DashboardIcon,
-    }
+    },
   },
 ];
 

@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Form, MessagePlugin, Input, Checkbox, Button, FormInstanceFunctions, SubmitContext } from 'tdesign-react';
+import { Form, MessagePlugin, Input, Checkbox, Button, FormInstanceFunctions, SubmitContext, message } from 'tdesign-react';
 import { LockOnIcon, UserIcon, BrowseOffIcon, BrowseIcon, RefreshIcon } from 'tdesign-icons-react';
 import classnames from 'classnames';
 import QRCode from 'qrcode.react';
@@ -20,21 +20,28 @@ export default function Login() {
   const { countdown, setupCountdown } = useCountdown(60);
   const formRef = useRef<FormInstanceFunctions>();
   const navigate = useNavigate();
-  const dispatch = useAppDispatch();
 
   const onSubmit = async (e: SubmitContext) => {
     if (e.validateResult === true) {
+      const formValue = formRef.current?.getFieldsValue?.(true) || {};
       try {
-        const formValue = formRef.current?.getFieldsValue?.(true) || {};
-        await dispatch(login(formValue));
-
+        await login(formValue);
         MessagePlugin.success('登录成功');
-
         navigate('/dashboard/base');
       } catch (e) {
-        console.log(e);
         MessagePlugin.error('登录失败');
       }
+      // try {
+      //   const formValue = formRef.current?.getFieldsValue?.(true) || {};
+      //   const res = await login(formValue);
+      //   console.log(res);
+      //   MessagePlugin.success('登录成功');
+
+      //   navigate('/dashboard/base');
+      // } catch (e) {
+      //   console.log(e);
+      //   MessagePlugin.error('登录失败');
+      // }
     }
   };
 
@@ -54,14 +61,14 @@ export default function Login() {
         {loginType === 'password' && (
           <>
             <FormItem name='account' rules={[{ required: true, message: '账号必填', type: 'error' }]}>
-              <Input size='large' placeholder='请输入账号：admin' prefixIcon={<UserIcon />}></Input>
+              <Input size='large' placeholder='请输入账号' prefixIcon={<UserIcon />}></Input>
             </FormItem>
             <FormItem name='password' rules={[{ required: true, message: '密码必填', type: 'error' }]}>
               <Input
                 size='large'
                 type={showPsw ? 'text' : 'password'}
                 clearable
-                placeholder='请输入登录密码：admin'
+                placeholder='请输入登录密码'
                 prefixIcon={<LockOnIcon />}
                 suffixIcon={
                   showPsw ? (

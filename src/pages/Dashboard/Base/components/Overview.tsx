@@ -1,11 +1,6 @@
 import React, { useState } from 'react';
-import { Button, Col, Row, Card } from 'tdesign-react';
-import ReactEcharts from 'echarts-for-react';
 import useDynamicChart from 'hooks/useDynamicChart';
-import Board, { ETrend } from 'components/Board';
-import LastWeekDatePicker from 'components/DatePicker';
 import { getBarChartOptions } from '../chart';
-import Style from './Overview.module.less';
 
 const options = getBarChartOptions();
 const Overview = (): React.ReactElement => {

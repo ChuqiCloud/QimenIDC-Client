@@ -22,12 +22,6 @@ const MiddleChart = () => {
     borderColor: ['series.0.itemStyle.borderColor', 'series.1.itemStyle.borderColor'],
   });
 
-  const dynamicPieChartOption = useDynamicChart(pieOptions, {
-    placeholderColor: ['legend.textStyle.color'],
-    containerColor: ['series.0.itemStyle.borderColor'],
-    textColor: ['label.color', 'label.color'],
-  });
-
   return (
     <Row gutter={[16, 16]} className={Style.middleChartPanel}>
       <Col xs={16} xl={9}>

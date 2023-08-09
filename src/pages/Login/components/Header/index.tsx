@@ -25,8 +25,7 @@ export default function Header() {
   return (
     <div>
       <header className={Style.loginHeader}>
-        <h2 className={Style.logo}>
-        </h2>
+        <h2 className={Style.logo}></h2>
         <div className={Style.operationsContainer}>
           <Button
             className={Style.operationsButton}

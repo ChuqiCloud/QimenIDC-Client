@@ -1,11 +1,7 @@
 import React, { memo } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Button, Popup, Badge, Dropdown, Space } from 'tdesign-react';
-import {
-  Icon,
-  SettingIcon,
-  PoweroffIcon,
-} from 'tdesign-icons-react';
+import { Button, Popup, Dropdown, Space } from 'tdesign-react';
+import { Icon, SettingIcon, PoweroffIcon } from 'tdesign-icons-react';
 import { useAppDispatch } from 'modules/store';
 import { toggleSetting } from 'modules/global';
 import { logout } from 'modules/user';
@@ -23,7 +19,7 @@ export default memo(() => {
     }
   };
   const handleLogout = async () => {
-    await dispatch(logout());
+    await logout();
     navigate('/login/index');
   };
 

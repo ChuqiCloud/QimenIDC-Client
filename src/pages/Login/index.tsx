@@ -8,7 +8,6 @@ import { selectGlobal } from 'modules/global';
 import Style from './index.module.less';
 
 export default memo(() => {
-  const [type, setType] = useState('login');
   const globalState = useAppSelector(selectGlobal);
   const { theme } = globalState;
 
@@ -21,8 +20,7 @@ export default memo(() => {
         <div className={Style.titleContainer}>
           <h1 className={Style.title}>登录到</h1>
           <h1 className={Style.title}>初七云管</h1>
-          <div className={Style.subTitle}>
-          </div>
+          <div className={Style.subTitle}></div>
         </div>
         <Login />
       </div>

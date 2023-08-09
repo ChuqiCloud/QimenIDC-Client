@@ -1,19 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
-import { BrowserRouter } from 'react-router-dom';
+import { HashRouter } from 'react-router-dom';
 import store from 'modules/store';
 import App from 'layouts/index';
 
 import TxcChangeLog from 'txc-change-log';
 
-const txcChangeLog = new TxcChangeLog({ id: 602740 });
-
-txcChangeLog.activateChangeLog()
-
 import 'tdesign-react/es/style/index.css';
 
 import './styles/index.less';
+
+const txcChangeLog = new TxcChangeLog({ id: 602740 });
+
+txcChangeLog.activateChangeLog();
 
 const env = import.meta.env.MODE || 'development';
 const baseRouterName = env === 'site' ? '/starter/react/' : '';
@@ -24,9 +24,9 @@ const root = document.getElementById('app')!;
 const renderApp = () => {
   ReactDOM.createRoot(root).render(
     <Provider store={store}>
-      <BrowserRouter basename={baseRouterName}>
+      <HashRouter basename={baseRouterName}>
         <App />
-      </BrowserRouter>
+      </HashRouter>
     </Provider>,
   );
 };
