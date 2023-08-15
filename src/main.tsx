@@ -4,7 +4,6 @@ import { Provider } from 'react-redux';
 import { HashRouter } from 'react-router-dom';
 import store from 'modules/store';
 import App from 'layouts/index';
-
 import TxcChangeLog from 'txc-change-log';
 
 import 'tdesign-react/es/style/index.css';

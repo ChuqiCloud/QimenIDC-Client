@@ -3,7 +3,7 @@ import { RootState } from '../store';
 import request from 'utils/request';
 
 const namespace = 'user';
-const TOKEN_NAME = 'chuqiscm_token';
+export const TOKEN_NAME = 'chuqiscm_token';
 
 // login
 export const login = async (userInfo: Record<string, unknown>) => {
@@ -16,6 +16,7 @@ export const login = async (userInfo: Record<string, unknown>) => {
     .then((res) => {
       console.log(res);
       localStorage.setItem(TOKEN_NAME, res.data);
+      document.cookie = `token=${res.data}`;
     });
 };
 
@@ -42,6 +43,7 @@ export const getUserInfo = createAsyncThunk(`${namespace}/getUserInfo`, async (_
 
 export const logout = async () => {
   localStorage.removeItem(TOKEN_NAME);
+  document.cookie = 'token=';
 };
 
 export const selectListBase = (state: RootState) => state.listBase;

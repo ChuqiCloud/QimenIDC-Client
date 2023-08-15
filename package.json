@@ -40,7 +40,8 @@
     "prettier": "^2.5.1",
     "typescript": "^4.8.4",
     "vite": "^4.4.8",
-    "vite-plugin-mock": "^2.9.6"
+    "vite-plugin-mock": "^2.9.6",
+    "vite-plugin-top-level-await": "^1.3.1"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.5",
@@ -58,7 +59,7 @@
     "react-dom": "^18.2.0",
     "react-redux": "^7.2.4",
     "react-router-dom": "^6.3.0",
-    "tdesign-icons-react": "^0.2.0",
+    "tdesign-icons-react": "^v0.3.0",
     "tdesign-react": "^1.1.10",
     "tvision-color": "^1.5.0",
     "txc-change-log": "^2.0.8"

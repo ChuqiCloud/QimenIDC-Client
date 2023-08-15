@@ -3,6 +3,13 @@ import { BrowserRouterProps } from 'react-router-dom';
 import dashboard from './modules/dashboard';
 import login from './modules/login';
 import otherRoutes from './modules/others';
+import api from './modules/api';
+import ippool from './modules/ippool';
+import node from './modules/node';
+import os from './modules/os';
+import area from './modules/area';
+import sysuser from './modules/sysuser';
+import vm from './modules/vm';
 
 export interface IRouter {
   path: string;
@@ -45,6 +52,18 @@ const routes: IRouter[] = [
   },
 ];
 
-const allRoutes = [...routes, ...dashboard, ...login, ...otherRoutes];
+const allRoutes = [
+  ...routes,
+  ...dashboard,
+  ...ippool,
+  ...node,
+  ...os,
+  ...vm,
+  ...area,
+  ...sysuser,
+  ...api,
+  ...login,
+  ...otherRoutes,
+];
 
 export default allRoutes;

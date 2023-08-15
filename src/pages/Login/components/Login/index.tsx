@@ -1,6 +1,15 @@
 import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Form, MessagePlugin, Input, Checkbox, Button, FormInstanceFunctions, SubmitContext, message } from 'tdesign-react';
+import {
+  Form,
+  MessagePlugin,
+  Input,
+  Checkbox,
+  Button,
+  FormInstanceFunctions,
+  SubmitContext,
+  message,
+} from 'tdesign-react';
 import { LockOnIcon, UserIcon, BrowseOffIcon, BrowseIcon, RefreshIcon } from 'tdesign-icons-react';
 import classnames from 'classnames';
 import QRCode from 'qrcode.react';
@@ -28,6 +37,7 @@ export default function Login() {
         await login(formValue);
         MessagePlugin.success('登录成功');
         navigate('/dashboard/base');
+        window.location.reload();
       } catch (e) {
         MessagePlugin.error('登录失败');
       }

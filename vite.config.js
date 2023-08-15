@@ -2,6 +2,7 @@ import path from 'path';
 import { loadEnv } from 'vite';
 import react from '@vitejs/plugin-react';
 import svgr from '@honkhonk/vite-plugin-svgr';
+import topLevelAwait from 'vite-plugin-top-level-await';
 
 const CWD = process.cwd();
 
@@ -39,26 +40,17 @@ export default (params) => {
     },
 
     plugins: [
+      topLevelAwait({
+        promiseExportName: '__tla',
+        promiseImportName: (i) => `__tla_${i}`,
+      }),
       svgr(),
-      react()
+      react(),
     ],
 
     build: {
       cssCodeSplit: false,
-      chunkSizeWarningLimit: 1500
-    },
-
-    server: {
-      host: '0.0.0.0',
-      port: 3003,
-      proxy: {
-        '/api': {
-          // 用于开发环境下的转发请求
-          // 更多请参考：https://vitejs.dev/config/#server-proxy
-          target: 'https://service-exndqyuk-1257786608.gz.apigw.tencentcs.com',
-          changeOrigin: true,
-        },
-      },
+      chunkSizeWarningLimit: 1500,
     },
   };
 };

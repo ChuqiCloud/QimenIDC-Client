@@ -1,72 +1,28 @@
-import React, { memo } from 'react';
+import React from 'react';
 import { Col, Row } from 'tdesign-react';
-import { UsergroupIcon, FileIcon } from 'tdesign-icons-react';
-import ReactEcharts from 'echarts-for-react';
-import Board, { ETrend, IBoardProps } from 'components/Board';
-import useDynamicChart from 'hooks/useDynamicChart';
-import { MICRO_CHART_OPTIONS_BAR, MICRO_CHART_OPTIONS_LINE } from '../chart';
-import Style from './TopPanel.module.less';
+import Board, { IBoardProps } from 'components/Board';
+import request from 'utils/request';
 
-const BarChartIcon = memo(() => {
-  const dynamicChartOption = useDynamicChart(MICRO_CHART_OPTIONS_BAR);
-  return (
-    <div className={Style.paneBarChart}>
-      <ReactEcharts
-        option={dynamicChartOption} // option：图表配置项
-        notMerge={true}
-        lazyUpdate={true}
-        style={{ height: 36 }}
-      />
-    </div>
-  );
-});
-
-const PieChartIcon = memo(() => (
-  <div className={Style.paneLineChart}>
-    <ReactEcharts
-      option={MICRO_CHART_OPTIONS_LINE} // option：图表配置项
-      notMerge={true}
-      lazyUpdate={true}
-      style={{ height: 56 }}
-    />
-  </div>
-));
-
+const totalOS = await request.get('/selectOsByOnline', { params: { page: 1, size: 20 } });
+const totalNode = await request.get('/selectNodeByPage', { params: { page: 1, size: 20 } });
+const totalIpPool = await request.get('/selectIpPoolList', { params: { page: 1, size: 20 } });
+const totalSysuser = await request.get('/getSysuser', { params: { page: 1, size: 20 } });
 const PANE_LIST: Array<IBoardProps> = [
   {
     title: 'OS数量',
-    count: '3 个',
-    trend: ETrend.up,
-    trendNum: '20.5%',
+    count: `${totalOS.data.total} 个`,
+  },
+  {
+    title: '集群节点',
+    count: `${totalNode.data.total} 个`,
   },
   {
     title: 'IP池',
-    count: '10 个',
-    trend: ETrend.down,
-    trendNum: '20.5%',
-    Icon: <BarChartIcon />,
+    count: `${totalIpPool.data.total} 个`,
   },
   {
-    title: '活跃用户',
-    count: '1126 个',
-    trend: ETrend.down,
-    trendNum: '20.5%',
-    Icon: (
-      <div className={Style.iconWrap}>
-        <UsergroupIcon className={Style.svgIcon} />
-      </div>
-    ),
-  },
-  {
-    title: '近期操作',
-    count: '527 次',
-    trend: ETrend.down,
-    trendNum: '20.5%',
-    Icon: (
-      <div className={Style.iconWrap}>
-        <FileIcon className={Style.svgIcon} />
-      </div>
-    ),
+    title: '超管账号',
+    count: `${totalSysuser.data.total} 个`,
   },
 ];
 
@@ -79,7 +35,6 @@ const TopPanel = () => (
           trend={item.trend}
           trendNum={item.trendNum}
           count={item.count}
-          desc={'自从上周以来'}
           Icon={item.Icon}
           dark={index === 0}
         />

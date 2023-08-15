@@ -1,41 +1,8 @@
 import React, { useState } from 'react';
-import { Col, Row, Card } from 'tdesign-react';
-import ReactEcharts from 'echarts-for-react';
-import useDynamicChart from 'hooks/useDynamicChart';
-import LastWeekDatePicker from 'components/DatePicker';
-import { getLineChartOptions, getPieChartOptions } from '../chart';
-import Style from './MiddleChart.module.less';
+import { getLineChartOptions } from '../chart';
 
 const lineOptions = getLineChartOptions();
-const pieOptions = getPieChartOptions();
 
-const MiddleChart = () => {
-  const [customOptions, setCustomOptions] = useState(lineOptions);
-
-  const onTimeChange = (value: Array<string>) => {
-    const options = getLineChartOptions(value);
-    setCustomOptions(options);
-  };
-
-  const dynamicLineChartOption = useDynamicChart(customOptions, {
-    placeholderColor: ['legend.textStyle.color', 'xAxis.axisLabel.color', 'yAxis.axisLabel.color'],
-    borderColor: ['series.0.itemStyle.borderColor', 'series.1.itemStyle.borderColor'],
-  });
-
-  return (
-    <Row gutter={[16, 16]} className={Style.middleChartPanel}>
-      <Col xs={16} xl={9}>
-        <Card title='负载状态' subtitle='百分比' actions={LastWeekDatePicker(onTimeChange)} bordered={false}>
-          <ReactEcharts option={dynamicLineChartOption} notMerge={true} lazyUpdate={false} />
-        </Card>
-      </Col>
-      {/* <Col xs={12} xl={3}>
-        <Card title='销售渠道' subtitle='2021-12' bordered={false}>
-          <ReactEcharts option={dynamicPieChartOption} notMerge={true} lazyUpdate={true} />
-        </Card>
-      </Col> */}
-    </Row>
-  );
-};
+const MiddleChart = () => <></>;
 
 export default React.memo(MiddleChart);
