@@ -4,34 +4,38 @@ import CommonStyles from 'styles/common.module.less';
 import { Table } from 'tdesign-react';
 import request from 'utils/request';
 
-const ApiList = () => {
+const SecondList = () => {
   const [data, setData] = useState({ total: 0, records: [] });
 
   useEffect(() => {
-    request.get('/selectIpPoolList', { params: { page: 1, size: 20 } }).then((res) => {
+    request.get('/selectIpPoolList').then((res) => {
       const parsedRecords = res.data.records.map((record: any) => ({
         ...record,
-        createDate: new Date(record.createDate).toLocaleDateString(), // Parse timestamp to date string
+        createDate: new Date(record.createDate).toLocaleDateString(),
       }));
       setData({ total: res.data.total, records: parsedRecords });
       console.log(data);
     });
   }, []);
 
-  const tabelRef = useRef(null);
+  const tableRef = useRef(null);
 
   return (
     <div className={classNames(CommonStyles.pageWithColor, CommonStyles.pageWithPadding)}>
       <Table
-        ref={tabelRef}
+        ref={tableRef}
         rowKey='id'
         columns={[
           { colKey: 'id', title: '序号', width: '25' },
           { colKey: 'name', title: '名称', width: '75' },
-          { colKey: 'gateway', title: 'AppID', width: '100' },
-          { colKey: 'mask', title: '创建日期', width: '100' },
-          { colKey: 'dns1', title: '首选DNS' },
-          { colKey: 'dns2', title: '备用DNS' },
+          { colKey: 'gateway', title: '网关', width: '100' },
+          { colKey: 'createDate', title: '创建日期', width: '100' },
+          {
+            colKey: 'detial',
+            title: '查看详情',
+            width: '25',
+            cell: (row) => <div>{row.row}</div>,
+          },
         ]}
         data={data.records}
         pagination={{
@@ -42,11 +46,11 @@ const ApiList = () => {
           onChange(pageInfo) {
             console.log(pageInfo, 'onChange pageInfo');
             request
-              .get('/selectApiByPage', { params: { page: pageInfo.current, size: pageInfo.pageSize } })
+              .get('/selectIpPoolList', { params: { page: pageInfo.current, size: pageInfo.pageSize } })
               .then((res) => {
                 const parsedRecords = res.data.records.map((record: any) => ({
                   ...record,
-                  createDate: new Date(record.createDate).toLocaleDateString(), // Parse timestamp to date string
+                  createDate: new Date(record.createDate).toLocaleDateString(),
                 }));
                 setData({ total: res.data.total, records: parsedRecords });
                 console.log(data);
@@ -59,4 +63,4 @@ const ApiList = () => {
   );
 };
 
-export default memo(ApiList);
+export default memo(SecondList);

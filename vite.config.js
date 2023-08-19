@@ -3,6 +3,7 @@ import { loadEnv } from 'vite';
 import react from '@vitejs/plugin-react';
 import svgr from '@honkhonk/vite-plugin-svgr';
 import topLevelAwait from 'vite-plugin-top-level-await';
+import { vitePluginSwaggerTypescriptApi } from 'vite-plugin-swagger-typescript-api'
 
 const CWD = process.cwd();
 
@@ -26,6 +27,7 @@ export default (params) => {
         router: path.resolve(__dirname, './src/router'),
         hooks: path.resolve(__dirname, './src/hooks'),
         types: path.resolve(__dirname, './src/types'),
+        api: path.resolve(__dirname, './scr/api'),
       },
     },
 
@@ -46,6 +48,11 @@ export default (params) => {
       }),
       svgr(),
       react(),
+      vitePluginSwaggerTypescriptApi({
+        name: 'index.ts',
+        output: path.resolve('./src/api'),
+        input: path.resolve('./swagger.json'),
+      }),
     ],
 
     build: {

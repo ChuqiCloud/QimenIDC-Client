@@ -24,13 +24,6 @@ const api: IRouter[] = [
           title: '查看所有',
         },
       },
-      {
-        path: 'delete',
-        Component: lazy(() => import('pages/API/Delete')),
-        meta: {
-          title: '删除',
-        },
-      },
     ],
   },
 ];
