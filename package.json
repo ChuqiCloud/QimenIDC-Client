@@ -20,7 +20,7 @@
   "devDependencies": {
     "@honkhonk/vite-plugin-svgr": "^1.1.0",
     "@types/echarts": "^4.9.13",
-    "@types/lodash": "^4.14.178",
+    "@types/lodash": "^4.14.197",
     "@types/mockjs": "^1.0.6",
     "@types/node": "^20.2.5",
     "@types/qrcode.react": "^1.0.2",
