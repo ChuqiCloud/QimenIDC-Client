@@ -61,7 +61,7 @@
     "react-router-dom": "^6.3.0",
     "tdesign-icons-react": "^v0.3.0",
     "tdesign-react": "^1.1.10",
-    "tvision-color": "^1.5.0",
+    "tvision-color": "^1.6.0",
     "txc-change-log": "^2.0.8",
     "vite-plugin-swagger-typescript-api": "^1.0.0"
   },
